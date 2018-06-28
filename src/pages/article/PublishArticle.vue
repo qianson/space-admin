@@ -25,7 +25,7 @@
           </div></el-col>
           <el-col :span="6"><div class="grid-content bg-purple">
             <el-form-item label="是否推荐" prop="name">
-              <el-select v-model="ruleForm.recommend" placeholder="请选择">
+              <el-select v-model="ruleForm.recommand" placeholder="请选择">
                 <el-option
                   v-for="item in recommends"
                   :key="item.value"
@@ -61,6 +61,11 @@
           <el-button type="primary" @click="publish">发布</el-button>
         </el-row>
       </el-form>
+      <el-date-picker
+        v-model="value1"
+        type="date"
+        placeholder="选择日期">
+      </el-date-picker>
     </div>
 </template>
 
@@ -71,6 +76,7 @@ export default {
   name: 'publishArticle',
   data () {
     return {
+      value1: '2018-06-06',
       headers: {
         Authorization: JSON.parse(sessionStorage.getItem('userInfo')).Authorization
       },
@@ -78,7 +84,7 @@ export default {
         title: '',
         type: null,
         summary: '',
-        recommend: null,
+        recommand: null,
         knowCode: null,
         thumbnailUrl: null,
         content: null
@@ -157,7 +163,7 @@ export default {
       })
     },
     uploadSuccess (data) {
-      this.ruleForm.thumbnailUrl = data.data.path
+      this.ruleForm.thumbnailUrl = data.data.thumbnailUrl
       this.$message({
         message: '上传成功',
         type: 'success',
@@ -165,6 +171,7 @@ export default {
       })
     },
     publish () {
+      console.log(this.ruleForm)
       this.ruleForm.type = this.selectedTypes[0]
       this.ruleForm.knowCode = this.selectedTypes[1]
       if (this.ruleForm.title && this.ruleForm.type && this.ruleForm.summary && this.ruleForm.thumbnailUrl && this.ruleForm.content && this.ruleForm.knowCode) {

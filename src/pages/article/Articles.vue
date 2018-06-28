@@ -68,8 +68,8 @@
           align="center"
           label="是否推荐">
           <template slot-scope="scope">
-            <el-col v-if="scope.row.recommend===1">推荐</el-col>
-            <el-col v-else-if="scope.row.recommend===2">不推荐</el-col>
+            <el-col v-if="scope.row.recommand===1">推荐</el-col>
+            <el-col v-else-if="scope.row.recommand===2">不推荐</el-col>
           </template>
         </el-table-column>
         <el-table-column
