@@ -1,24 +1,23 @@
 <template>
   <div>
     <div class="login-wrapper">
-      <div class="admin-sys">后台管理系统</div>
-      <el-form :model="ruleForm" :rules="rules" ref="ruleForm">
+      <div class="admin-sys">订单管理系统</div>
+      <el-form :model="ruleForm" ref="ruleForm">
         <el-form-item prop="userName">
           <el-input type="text" auto-complete="off" placeholder="用户名" v-model="ruleForm.userName"></el-input>
         </el-form-item>
         <el-form-item prop="password">
-          <el-input type="password" auto-complete="off" placeholder="密码" v-model="ruleForm.password"></el-input>
+          <el-input auto-complete="off" placeholder="密码" v-model="ruleForm.password"></el-input>
+        </el-form-item>
+        <el-form-item prop="qrcode">
+          <el-input auto-complete="off" placeholder="二维码" v-model="ruleForm.qrcode" class="qrcode"></el-input>
+          <el-button>1111</el-button>
         </el-form-item>
         <el-form-item class="comfirm">
           <el-button type="primary" @click="comfirmLogin('ruleForm')">确认</el-button>
         </el-form-item>
       </el-form>
     </div>
-    <el-date-picker
-      type="dates"
-      v-model="value14"
-      placeholder="选择一个或多个日期">
-    </el-date-picker>
   </div>
 </template>
 
@@ -48,7 +47,8 @@ export default {
       value14: [],
       ruleForm: {
         userName: '',
-        password: ''
+        password: '',
+        qrcode: '111'
       },
       rules: {
         userName: [
@@ -71,15 +71,8 @@ export default {
       let self = this
       this.$refs[formname].validate((valid) => {
         if (valid) {
-          let words = CryptoJS.enc.Utf8.parse(this.ruleForm.password)
-          let paramBase64 = CryptoJS.enc.Base64.stringify(words)
-          this.ruleForm.password = paramBase64
-          login(this.ruleForm).then(res => {
-            let userInfo = JSON.stringify(res.data)
-            sessionStorage.setItem('userInfo', userInfo)
-            self.$router.push('/home')
-          }).catch(err => {
-            console.log(err)
+          this.$router.push({
+            path: '/admin'
           })
         } else {
           console.log('error submit!!')
@@ -101,11 +94,10 @@ export default {
   }
 .login-wrapper{
   width:400px;
-  height:300px;
   box-sizing: border-box;
   position: fixed;
-  left: 50%;
-  top: 50%;
+  left: 80%;
+  top: 40%;
   transform:translate3d(-50%,-50%,0);
   border-radius: 5px;
   background-clip: padding-box;
@@ -116,5 +108,8 @@ export default {
 }
   .comfirm button{
     width:100%;
+  }
+  .qrcode{
+    width: 100px;
   }
 </style>

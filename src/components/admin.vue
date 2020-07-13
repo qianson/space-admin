@@ -6,8 +6,8 @@
           <el-popover
             placement="top"
             width="160">
-            <p style="text-align:right;cursor: pointer;color:#409EFF;" @click="loginOut">退出登录</p>
-            <span slot="reference" type="text" style="color:#fff;float:right;">欢迎登录, {{userName}}</span>
+            <p @click="loginOut" class="login-out">退出登录</p>
+            <span slot="reference" type="text" class="welcome-login">欢迎登录, {{userName}}</span>
           </el-popover>
         </el-header>
         <el-container>
@@ -61,7 +61,6 @@
 </template>
 
 <script>
-import {loginOut} from '../../apis/index'
 export default {
   name: 'home',
   data() {
@@ -141,6 +140,16 @@ export default {
     text-align: center;
     line-height: 60px;
   }
+   .welcome-login{
+        color:#fff;
+        float:right;
+        cursor: pointer;
+    }
+    .login-out{
+        text-align:right;
+        cursor: pointer;
+        color:#409EFF;
+    }
   .routerActive{
     color: red;
   }

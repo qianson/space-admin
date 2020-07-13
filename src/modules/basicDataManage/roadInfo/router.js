@@ -1,7 +1,7 @@
-import clothesStandards from '@/modules/basicDataManage/clothesStandards/pages/index'
+import roadInfo from '@/modules/basicDataManage/roadInfo/pages/index'
 export default [
     {
-        path: '/admin/articles',
-        component: Article
+        path: '/admin/basicDataManage/roadInfo',
+        component: roadInfo
     },
 ]

@@ -55,7 +55,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <div class="page-wrapper" style="margin-top:20px;">
+    <div class="pagination-wrapper" style="margin-top:20px;">
       <el-pagination :current-page.sync="searchParams.currentPage" @size-change="handleSizeChange" @current-change="handleCurrentChange" :page-sizes="[5, 10, 15, 20]" :page-size="searchParams.pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total">
       </el-pagination>
     </div>
